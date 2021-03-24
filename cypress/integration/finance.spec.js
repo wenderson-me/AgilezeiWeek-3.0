@@ -1,5 +1,10 @@
+/// <reference types="cypress" />
 
-context('Dev Finances', () => {
+/// cy.viewport
+/// arquivos de config
+/// configs por linha de comando: npx cypress open --config viewportWidth=411, viewportHeight=823
+
+context('Finances', () => {
 
     // hooks
     // trechos que executam antes e depois do teste
@@ -11,6 +16,7 @@ context('Dev Finances', () => {
     beforeEach(() => {
 
       cy.visit('https://devfinance-agilizei.netlify.app')
+      cy.viewport(411, 582)
       cy.get('#data-table tbody tr').should('have.length', 0) // tabela vazia
     })
 
