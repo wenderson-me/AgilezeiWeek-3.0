@@ -5,13 +5,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,42 +19,27 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run cypress:run:dash
-    
-    # action criada especialmente para o Cypress
-    - name: Cypress run
-      uses: cypress-io/github-action@v2.8.2
-      with: 
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+
+      # action criada especialmente para o Cypress
+      - name: Cypress run
+        uses: cypress-io/github-action@v2.8.2
+        with:
           record: true
-          group: 'AgilezeiWeek-3.0'
-      env:
-        # pass the Dashboard record key as an environment variable
-        CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-        
-        # upload dos videos gerados
-    - name: Upload videos
-      uses: actions/upload-artifact@v2.2.0
-      if: always()
-      with:
+          group: "AgilezeiWeek-3.0"
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
+          # upload dos videos gerados
+      - name: Upload videos
+        uses: actions/upload-artifact@v2.2.0
+        if: always()
+        with:
           name: videos
           path: cypress/videos
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
