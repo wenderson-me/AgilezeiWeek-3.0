@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import { format } from '../support/utils'
 
 /// cy.viewport
 /// arquivos de config
@@ -102,7 +103,7 @@ context('Finances', () => {
     cy.get('button').contains('Salvar').click()
 
 
-    
+
     // capturar as linhas com as transações e colunas com valores
     // capturar textos dessas colunas
     // formatar esses valores das linhas
