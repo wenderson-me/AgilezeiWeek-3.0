@@ -41,7 +41,7 @@ context("Finances", () => {
   // Cadastrar saidas
   it("Cadastrar saidas", () => {
     cy.get("#transaction .button").click();
-    cy.get("#description").type("Mesada");
+    cy.get("#description").type("Arroz");
     cy.get("[name=amount]").type(-30);
     cy.get("[type=date]").type("2021-03-30");
     cy.get("button").contains("Salvar").click();
